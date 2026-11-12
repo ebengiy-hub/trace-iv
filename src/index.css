@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-blue: #0128ff;
+  --color-blue-soft: #3a4af2;
+  --color-lime: #d2fd02;
+  --color-sun: #f9c201;
+  --color-ink: #0d0e12;
+  --color-coal: #1a1a1a;
+  --color-mist: #e9ecf6;
+  --color-haze: #f3f5fb;
+  --color-slate: #4a4e5c;
+}
+
+/*
+  1rem == 16px on a 390px-wide phone (the design width). On other phones every
+  rem-based size scales with the viewport width, so proportions stay identical.
+*/
+html {
+  font-size: clamp(13px, calc(100vw / 390 * 16), 17.6px);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  background: #ffffff;
+}
+@media (min-width: 640px) {
+  html { font-size: 16px; }
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #ffffff;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+img { -webkit-user-drag: none; user-select: none; }
+
+/* Screen backdrop: cool white with the faint diamond facet seen behind screens 03/04 */
+.screen-bg {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0) 100%),
+    radial-gradient(120% 70% at 50% 0%, #f6f7fc 0%, #eceef7 55%, #e6e9f4 100%);
+}
+.facet {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(118deg, transparent 49.6%, rgba(255,255,255,0.55) 50%, transparent 66%),
+    linear-gradient(242deg, transparent 49.6%, rgba(255,255,255,0.45) 50%, transparent 66%);
+  opacity: .7;
+}
+
+/* Frosted glass card used across all screens */
+.glass {
+  background: linear-gradient(150deg, rgba(255,255,255,0.92) 0%, rgba(244,246,253,0.72) 100%);
+  border: 1px solid rgba(255,255,255,0.95);
+  box-shadow:
+    0 0.9rem 1.8rem -1rem rgba(38, 48, 110, 0.28),
+    0 0.15rem 0.4rem -0.1rem rgba(38, 48, 110, 0.10),
+    inset 0 1px 0 rgba(255,255,255,1);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+.glass-tile {
+  background: linear-gradient(160deg, #eef0f8 0%, #dcdfec 100%);
+  box-shadow: 0 0.5rem 1rem -0.7rem rgba(38,48,110,.35), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.pill-shadow { box-shadow: 0 0.6rem 1.2rem -0.6rem rgba(10, 14, 40, 0.45); }
+.blue-shadow { box-shadow: 0 0.8rem 1.6rem -0.7rem rgba(1, 40, 255, 0.65); }
+
+/* Soft feather on artwork crops so they melt into the card */
+.feather { mask-image: radial-gradient(75% 75% at 50% 50%, #000 62%, transparent 100%);
+  -webkit-mask-image: radial-gradient(75% 75% at 50% 50%, #000 62%, transparent 100%); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.pt-safe { padding-top: max(env(safe-area-inset-top), 0.75rem); }
+.pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 1rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
