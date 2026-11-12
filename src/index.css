@@ -70,12 +70,22 @@ img { -webkit-user-drag: none; user-select: none; }
   background: linear-gradient(160deg, #eef0f8 0%, #dcdfec 100%);
   box-shadow: 0 0.5rem 1rem -0.7rem rgba(38,48,110,.35), inset 0 1px 0 rgba(255,255,255,.9);
 }
+.content-glass-panel {
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,.16));
+  box-shadow: 0 -.2rem .75rem rgba(255,255,255,.45), 0 .25rem .75rem rgba(50,60,110,.045);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+}
+.panel-edge { overflow: visible; filter: drop-shadow(0 2px 3px rgba(50,60,110,.08)); }
+.panel-edge .panel-edge-highlight { fill: none; stroke: rgba(255,255,255,.94); stroke-width: 1.25px; }
 .pill-shadow { box-shadow: 0 0.6rem 1.2rem -0.6rem rgba(10, 14, 40, 0.45); }
 .blue-shadow { box-shadow: 0 0.8rem 1.6rem -0.7rem rgba(1, 40, 255, 0.65); }
 
 /* Soft feather on artwork crops so they melt into the card */
 .feather { mask-image: radial-gradient(75% 75% at 50% 50%, #000 62%, transparent 100%);
   -webkit-mask-image: radial-gradient(75% 75% at 50% 50%, #000 62%, transparent 100%); }
+.feather-art { mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 48%, rgba(0,0,0,.68) 70%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 70% 68% at 50% 50%, #000 48%, rgba(0,0,0,.68) 70%, transparent 100%); }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
@@ -85,4 +95,29 @@ img { -webkit-user-drag: none; user-select: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Fade artwork into its frosted card while retaining the silhouette. */
+.amphora-feather {
+  -webkit-mask-image: radial-gradient(ellipse 66% 72% at 50% 49%, #000 42%, rgba(0,0,0,.76) 62%, transparent 92%);
+  mask-image: radial-gradient(ellipse 66% 72% at 50% 49%, #000 42%, rgba(0,0,0,.76) 62%, transparent 92%);
+}
+.filter-row {
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 88%, transparent 100%);
+  padding-right: .5rem;
+}
+.petals-bleed {
+  -webkit-mask-image: radial-gradient(ellipse 72% 66% at 73% 48%, #000 42%, rgba(0,0,0,.82) 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 66% at 73% 48%, #000 42%, rgba(0,0,0,.82) 62%, transparent 100%);
+}
+
+.screen-bg > header > button, .screen-bg > header > span { position: relative; z-index: 2; }
+
+/* Petal bleeding off the right screen edge: fade left, top and bottom so no rectangle shows */
+.petals-edge {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 55%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-composite: intersect;
 }
