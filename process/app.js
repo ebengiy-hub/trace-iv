@@ -10,7 +10,7 @@
 
   function resetZoom() {
     $('#viewer-scroll').classList.remove('zoomed');
-    $('#viewer-zoom').textContent = 'Büyüt +';
+    $('#viewer-zoom').textContent = 'Zoom in +';
     $('#viewer-zoom').setAttribute('aria-pressed','false');
     $('#viewer-scroll').scrollTop = 0;
     $('#viewer-scroll').scrollLeft = 0;
@@ -19,7 +19,7 @@
     boardIndex = n;
     const title = content.boards[n-1];
     $('#viewer-image').src = `assets/board-${pad(n)}.jpg`;
-    $('#viewer-image').alt = `${pad(n)} — ${title}, özgün sunum panosu`;
+    $('#viewer-image').alt = `${pad(n)} — ${title}, original presentation board`;
     $('#image-caption').textContent = `${pad(n)} / ${title}`;
     $('#viewer-count').textContent = `${pad(n)} / ${pad(content.boards.length)}`;
     $('#viewer-prev').disabled = n === 1;
@@ -36,9 +36,9 @@
     else {
       boardIndex = null;
       $('#viewer-image').src = trigger.dataset.image;
-      $('#viewer-image').alt = trigger.dataset.caption || 'Tasarım sürecinden ayrıntı';
+      $('#viewer-image').alt = trigger.dataset.caption || 'Detail from the design process';
       $('#image-caption').textContent = trigger.dataset.caption || '';
-      $('#viewer-count').textContent = 'ÖZGÜN PANODAN AYRINTI';
+      $('#viewer-count').textContent = 'DETAIL FROM THE ORIGINAL BOARD';
       $('#viewer-prev').hidden = true;
       $('#viewer-next').hidden = true;
       resetZoom();
@@ -51,7 +51,7 @@
   viewer.addEventListener('click',e=>{if(e.target===viewer) viewer.close();});
   $('#viewer-zoom').addEventListener('click',()=>{
     const zoomed=$('#viewer-scroll').classList.toggle('zoomed');
-    $('#viewer-zoom').textContent=zoomed?'Sığdır −':'Büyüt +';
+    $('#viewer-zoom').textContent=zoomed?'Fit −':'Zoom in +';
     $('#viewer-zoom').setAttribute('aria-pressed',String(zoomed));
   });
   $('#viewer-prev').addEventListener('click',()=>{if(boardIndex>1)displayBoard(boardIndex-1);});
@@ -124,7 +124,7 @@
   window.addEventListener('resize',updateReading);
   updateReading();
 
-  fetch('content.json').then(r=>{if(!r.ok)throw new Error('İçerik yüklenemedi');return r.json();}).then(data=>{
+  fetch('content.json').then(r=>{if(!r.ok)throw new Error('Could not load content');return r.json();}).then(data=>{
     content=data;
     let scene=0;
     function selectScene(n) {
@@ -132,7 +132,7 @@
       scene=n;
       const item=content.scenes[n];
       $('#scene-image').src=`assets/scenario-${n+1}.jpg`;
-      $('#scene-image').alt=`${n+1}. adım — ${item.title}, özgün kullanım senaryosu`;
+      $('#scene-image').alt=`Step ${n+1} — ${item.title}, original usage scenario`;
       $('#scene-count').textContent=`${pad(n+1)} / ${pad(content.scenes.length)}`;
       $('#scene-verb').textContent=item.verb;
       $('#scene-title').textContent=item.title;
@@ -148,7 +148,7 @@
     }
     initializeTabs('data-app',n=>{
       $('#app-image').src=`assets/app-${n+1}.jpg`;
-      $('#app-image').alt=`${content.appScreens[n].label} — özgün uygulama ekranı`;
+      $('#app-image').alt=`${content.appScreens[n].label} — original app screen`;
     });
     $$('[data-part]').forEach(button=>button.addEventListener('click',()=>{
       const n=Number(button.dataset.part);
