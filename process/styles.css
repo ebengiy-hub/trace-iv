@@ -13,3 +13,18 @@
 
 /* Supplied development studies retain the existing editorial grid. */
 .development-list{display:grid;gap:64px;margin-bottom:70px}.development-study{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,60px);align-items:start;padding-top:28px;border-top:1px solid var(--line)}.development-visual{position:sticky;top:130px}.development-visual .board-image{width:100%}.development-copy h3{font-size:clamp(25px,2.5vw,36px)}.development-copy h4{font-size:13px;margin:22px 0 8px;font-weight:600}.development-copy p,.development-copy li{font-size:14px;line-height:1.8;color:var(--muted)}.development-copy ul{padding-left:19px}.development-copy p{margin-bottom:16px}.final-views{margin-top:65px}.final-views>.board-image{width:100%}@media(max-width:760px){.development-study{grid-template-columns:1fr;gap:24px}.development-visual{position:static}.development-list{gap:42px}.development-copy h3{font-size:28px}}
+/* Phone and small-tablet controls keep a minimum 44px touch area. */
+@media(max-width:900px){
+ .wordmark{min-height:44px;display:flex;flex-wrap:wrap;align-content:center;max-width:116px}.wordmark small{flex-basis:100%}
+ .text-button,.index-button,.pill-tabs button,.line-tabs button,.viewer-top button,.viewer-bottom button{min-width:44px;min-height:44px}
+ .pill-tabs button{font-size:12px;padding:10px 12px}
+ footer>a:not(.wordmark){display:flex;align-items:center;min-height:44px}footer>a:last-child{justify-content:flex-end}
+ .scene-controls{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px}
+ #scene-prev{grid-column:1;grid-row:1}#scene-next{grid-column:3;grid-row:1}
+ .circle-button{width:44px;height:44px}
+ .scene-dots{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%}
+ .scene-dots button{min-width:44px;min-height:44px;padding:12px;display:grid;place-items:center}
+ .hotspot{width:44px;height:44px;font-size:12px}
+ .viewer-top{flex-wrap:wrap}.viewer-top p{flex-basis:100%;max-width:100%;margin:0}.viewer-top>div{margin-left:auto}
+}
+@media(max-width:380px){.scene-dots{grid-template-columns:repeat(3,minmax(0,1fr))}}
